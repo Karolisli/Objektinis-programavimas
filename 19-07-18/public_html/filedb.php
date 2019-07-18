@@ -34,14 +34,6 @@ class FileDB {
         }
     }
 
-    // public function setData($data_array){
-    //     $this->
-    // }
-
-    // public function save(){
-    //     $this->
-    // }
-
 }
 
 $db = new FileDB(STORAGE_FILE);
