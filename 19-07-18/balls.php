@@ -6,7 +6,7 @@ class ThailandSurprise {
     
     public function __construct($clothes){
         $this->clothes = $clothes;
-        $this->balls = rand(0,1);
+        $this->balls = rand(true,false);
     }
 }
 
