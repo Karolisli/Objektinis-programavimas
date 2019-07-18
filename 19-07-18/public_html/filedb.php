@@ -14,13 +14,11 @@ class FileDB {
     }
 
     public function load(){
-        if (file_exsist($this->$file_name)){
-            if (file_exists($this->file_name)) {
-                $encoded_string = file_get_contents($this->file_name);	
+        if (file_exists($this->file_name)) {
+            $encoded_string = file_get_contents($this->file_name);	
 
-                if ($encoded_string !== false) {
-                    $this->data =  json_decode($encoded_string, true);
-                }
+            if ($encoded_string !== false) {
+                $this->data = json_decode($encoded_string, true);
             }
         }
     }
@@ -28,17 +26,20 @@ class FileDB {
     public function getData(){
         if($this->data == null){
             $this->load();
-            return;
+            return $this->data;
         }else{
             $this->data;
         }
     }
 
+    public function setData($data_array){
+        $this->data = $data_array;
+    }
 }
 
 $db = new FileDB(STORAGE_FILE);
 
-var_dump($db);
+var_dump($db->getData());
 ?>
 
 <html>
