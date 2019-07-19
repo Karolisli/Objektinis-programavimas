@@ -48,7 +48,7 @@ class FileDB {
 
 $db = new FileDB(STORAGE_FILE);
 
-$data_array = [];
+// $data_array = [];
 
 $db->createTable('new_table');
 
