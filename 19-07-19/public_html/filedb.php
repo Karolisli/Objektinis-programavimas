@@ -50,7 +50,7 @@ $db = new FileDB(STORAGE_FILE);
 
 $data_array = [];
 
-$db->createTable('one');
+$db->createTable('new_table');
 
 var_dump($db);
 
