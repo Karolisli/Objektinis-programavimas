@@ -44,15 +44,23 @@ class FileDB {
             return true;
         }
     }
+
+    public function dropTable($table_name){
+        unset($this->data[$table_name]);
+    }
 }
 
 $db = new FileDB(STORAGE_FILE);
 
-// $data_array = [];
+$db->createTable('users');
 
-$db->createTable('new_table');
+$db->createTable('nothing');
+
+$db->dropTable('nothing');
 
 var_dump($db);
+
+
 
 ?>
 
