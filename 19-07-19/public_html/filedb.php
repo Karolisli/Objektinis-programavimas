@@ -35,13 +35,23 @@ class FileDB {
     public function setData($data_array){
         $this->data = $data_array;
     }
+
+    public function createTable($table_name){
+        if(isset($this->data[$table_name])){
+            return false;
+        }else{
+            $this->data[$table_name] = [];
+            return true;
+        }
+    }
 }
 
-$db = new FileDB('data/text.txt');
+$db = new FileDB(STORAGE_FILE);
 
 $data_array = [];
 
-var_dump($db->setData($data_array));
+$db->createTable('one');
+
 var_dump($db);
 
 ?>

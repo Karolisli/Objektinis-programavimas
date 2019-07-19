@@ -5,46 +5,11 @@ require '../functions/file.php';
 require '../functions/html/builder.php';
 require '../functions/form/core.php';
 
-class FileDB {
-    private $file_name;
-    private $data;
-    
-    public function __construct($file_name){
-        $this->file_name = $file_name;
-    }
-
-    public function load(){
-        if (file_exists($this->file_name)) {
-            $encoded_string = file_get_contents($this->file_name);	
-
-            if ($encoded_string !== false) {
-                $this->data = json_decode($encoded_string, true);
-            }
-        }
-    }
-
-    public function getData(){
-        if($this->data == null){
-            $this->load();
-            return $this->data;
-        }else{
-            $this->data;
-        }
-    }
-
-    public function setData($data_array){
-        $this->data = $data_array;
-    }
-}
-
-$db = new FileDB('data/text.txt');
-
-$data_array = [];
-
-var_dump($db->setData($data_array));
-var_dump($db);
-
+print 'hi';
+header('Location:http://google.com');
+print 'loo';
 ?>
+
 
 <html>
     <head>
