@@ -67,18 +67,27 @@ class FileDB {
         }
         return false;
     }
+
+    public function rowExists($table_name, $row_id){
+        if(isset($this->data[$table_name][$row_id])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 }
 
 $db = new FileDB(STORAGE_FILE);
 
 $db->createTable('users');
 
-// $db->createTable('nothing');
+// $db->rowExists('thing', 'codex',' test');
 
-// $db->dropTable('nothing');
-
-$db->insertRow('test','lors');
 var_dump($db);
+
+var_dump($db->rowExists('thing', 'codex'));
 
 ?>
 
