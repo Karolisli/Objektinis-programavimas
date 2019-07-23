@@ -112,6 +112,18 @@ class FileDB {
         }
         return false;
     }
+/**
+ * 
+ * @param type string $table_name
+ * @param type string $row_id
+ * @return function or false
+ */
+    public function getRow($table_name, $row_id){
+        if($this->rowExists($table_name, $row_id)){
+            return $this->data[$table_name][$row_id];
+        }
+        return false;
+    }
 }
 
 $db = new FileDB(STORAGE_FILE);
@@ -120,7 +132,7 @@ $db->createTable('users');
 
 var_dump($db);
 
-var_dump($db->deleteRow('users', 'thing'));
+var_dump($db->getRow('users', 'thing'));
 
 ?>
 
