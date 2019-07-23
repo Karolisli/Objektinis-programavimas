@@ -58,7 +58,7 @@ class FileDB {
     
     public function insertRow($table_name, $row, $row_id = null) {
         if ($this->tableExists($table_name)) {
-            if ($row_id !== null) {
+            if ($row_id) {
                 $this->data[$table_name][$row_id] = $row;
             } else {
                 $this->data[$table_name][] = $row;
@@ -75,12 +75,19 @@ class FileDB {
             return false;
         }
     }
-
+/**
+ * 
+ * @param type string $table_name
+ * @param type string $row
+ * @param type string $row_id
+ * @return false or true
+ */
     public function rowInsertIfNotExists($table_name, $row, $row_id){
         if($this->rowExists($table_name, $row_id)){
             return false;
         }else{
             $this->data[$table_name][$row_id] = $row;
+            return true;
         }
     }
 }
@@ -89,13 +96,11 @@ $db = new FileDB(STORAGE_FILE);
 
 $db->createTable('users');
 
-$db->insertRow('thing', 'codex',' test');
+$db->insertRow('thing', 'codex');
 
 var_dump($db);
 
-var_dump($db->rowExists('thing', 'codex'));
-
-var_dump($db->rowInsertIfNotExists('thing', 'codex','three'));
+var_dump($db->rowInsertIfNotExists('one', 'two','three'));
 
 ?>
 
