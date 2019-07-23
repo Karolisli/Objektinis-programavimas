@@ -86,8 +86,22 @@ class FileDB {
         if($this->rowExists($table_name, $row_id)){
             return false;
         }else{
-            $this->data[$table_name][$row_id] = $row;
+            $this->insertRow($table_name, $row, $row_id);
+        }
+    }
+/**
+ * 
+ * @param type string $table_name
+ * @param type string $row_id
+ * @param type string $row
+ * @return false or true
+ */
+    public function updateRow($table_name, $row_id, $row){
+        if($this->rowExists($table_name, $row_id)){
+            $this->data[$table_name][$row_id][$row] = $row;
             return true;
+        }else{
+            return false;
         }
     }
 }
@@ -100,7 +114,7 @@ $db->insertRow('thing', 'codex');
 
 var_dump($db);
 
-var_dump($db->rowInsertIfNotExists('one', 'two','three'));
+var_dump($db->updateRow('one', 'two','three'));
 
 ?>
 
