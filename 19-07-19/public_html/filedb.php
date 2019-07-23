@@ -76,18 +76,26 @@ class FileDB {
         }
     }
 
-
+    public function rowInsertIfNotExists($table_name, $row, $row_id){
+        if($this->rowExists($table_name, $row_id)){
+            return false;
+        }else{
+            $this->data[$table_name][$row_id] = $row;
+        }
+    }
 }
 
 $db = new FileDB(STORAGE_FILE);
 
 $db->createTable('users');
 
-// $db->rowExists('thing', 'codex',' test');
+$db->insertRow('thing', 'codex',' test');
 
 var_dump($db);
 
 var_dump($db->rowExists('thing', 'codex'));
+
+var_dump($db->rowInsertIfNotExists('thing', 'codex','three'));
 
 ?>
 
