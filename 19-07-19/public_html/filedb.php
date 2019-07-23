@@ -37,16 +37,35 @@ class FileDB {
     }
 
     public function createTable($table_name){
-        if(isset($this->data[$table_name])){
-            return false;
-        }else{
+        if(!$this->tableExists($table_name)){
             $this->data[$table_name] = [];
             return true;
         }
+        return false;  
     }
 
     public function dropTable($table_name){
         unset($this->data[$table_name]);
+    }
+
+    public function tableExists($table_name){
+        if(isset($this->data[$table_name])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function insertRow($table_name, $row, $row_id = null) {
+        if ($this->tableExists($table_name)) {
+            if ($row_id !== null) {
+                $this->data[$table_name][$row_id] = $row;
+            } else {
+                $this->data[$table_name][] = $row;
+            }    
+            return true;       
+        }
+        return false;
     }
 }
 
@@ -54,13 +73,12 @@ $db = new FileDB(STORAGE_FILE);
 
 $db->createTable('users');
 
-$db->createTable('nothing');
+// $db->createTable('nothing');
 
-$db->dropTable('nothing');
+// $db->dropTable('nothing');
 
+$db->insertRow('test','lors');
 var_dump($db);
-
-
 
 ?>
 
