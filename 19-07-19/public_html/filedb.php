@@ -104,17 +104,23 @@ class FileDB {
             return false;
         }
     }
+
+    public function deleteRow($table_name, $row_id){
+        if($this->rowExists($table_name, $row_id)){
+            unset($this->data[$table_name][$row_id]);
+            return true;
+        }
+        return false;
+    }
 }
 
 $db = new FileDB(STORAGE_FILE);
 
 $db->createTable('users');
 
-$db->insertRow('thing', 'codex');
-
 var_dump($db);
 
-var_dump($db->updateRow('one', 'two','three'));
+var_dump($db->deleteRow('users', 'thing'));
 
 ?>
 
