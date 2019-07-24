@@ -111,11 +111,17 @@ class Drink {
     public function getImage() {
         return $this->data['image'];
     }
-
+    /**
+     * Sets data id
+     * @param int $id
+     */
     public function setId(int $id){
         $this->data['id'] = $id;
     }
-
+    /**
+     * Returns id url
+     * @return type
+     */
     public function getId(){
         return $this->data['id'];
     }
