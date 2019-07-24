@@ -112,15 +112,13 @@ class Drink {
         return $this->data['image'];
     }
     /**
-     * Sets data id
-     * @param int $id
+     * @param id $id
      */
     public function setId(int $id){
         $this->data['id'] = $id;
     }
     /**
-     * Returns id url
-     * @return type
+     * @return int|null
      */
     public function getId(){
         return $this->data['id'];
