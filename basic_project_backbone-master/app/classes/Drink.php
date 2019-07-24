@@ -9,11 +9,11 @@ class Drink {
             $this->setData($data);
         } else {
             $this->data = [
+                'id' => null,
                 'name' => null,
                 'amount_ml' => null,
                 'abarot' => null,
-                'image' => null,
-                'id' => null
+                'image' => null
             ];
         }
     }
@@ -23,11 +23,13 @@ class Drink {
      * @param array $array
      */
     public function setData($array) {
-        $this->setName($array['name']) ?? null;
-        $this->setAmount($array['amount_ml']) ?? null;
-        $this->setAbarot($array['abarot']) ?? null;
-        $this->setImage($array['image']) ?? null;
-        $this->setId($array['id']) ?? null;
+        if(isset($array['id'])){
+            $this->setId($array['id']);
+        }
+        $this->setName($array['name'] ?? null);
+        $this->setAmount($array['amount_ml'] ?? null);
+        $this->setAbarot($array['abarot'] ?? null);
+        $this->setImage($array['image'] ?? null);
     }
 
     /**
@@ -40,7 +42,7 @@ class Drink {
             'amount_ml' => $this->getAmount(),
             'abarot' => $this->getAbarot(),
             'image' => $this->getImage(),
-            'id' => $this-getId(),
+            // 'id' => $this-getId(),
         ];
     }
 
