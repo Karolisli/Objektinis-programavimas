@@ -12,7 +12,8 @@ class Drink {
                 'name' => null,
                 'amount_ml' => null,
                 'abarot' => null,
-                'image' => null
+                'image' => null,
+                'id' => null
             ];
         }
     }
@@ -26,6 +27,7 @@ class Drink {
         $this->setAmount($array['amount_ml']) ?? null;
         $this->setAbarot($array['abarot']) ?? null;
         $this->setImage($array['image']) ?? null;
+        $this->setId($array['id']) ?? null;
     }
 
     /**
@@ -37,7 +39,8 @@ class Drink {
             'name' => $this->getName(),
             'amount_ml' => $this->getAmount(),
             'abarot' => $this->getAbarot(),
-            'image' => $this->getImage()
+            'image' => $this->getImage(),
+            'id' => $this-getId(),
         ];
     }
 
@@ -107,6 +110,14 @@ class Drink {
      */
     public function getImage() {
         return $this->data['image'];
+    }
+
+    public function setId(int $id){
+        $this->data['id'] = $id;
+    }
+
+    public function getId(){
+        return $this->data['id'];
     }
 
 }
