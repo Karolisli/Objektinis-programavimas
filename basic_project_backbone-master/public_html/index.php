@@ -8,46 +8,35 @@ $nav = [
     ]
 ];
 
-
-// use App;
-$db = new Core\FileDB(DB_FILE);
-$db->createTable('test_table');
-$db->insertRow('test_table', ['name' => 'Zebenkstis', 'balls' => true]);
-$db->insertRow('test_table', ['name' => 'Cytis Ritinas', 'balls' => false]);
-$db->updateRow('test_table', 1, ['name' => 'Rytis Citins', 'balls' => false]);
-
-$db->rowInsertIfNotExists('test_table', 4, ['name' => 'Bubilius Kybys', 'balls' => true]);
-
-// var_dump('All database data:', $db->getData());
-
-$rows_with_balls = $db->getRowsWhere('test_table', ['balls' => true]);
-// var_dump('Rows with balls:', $rows_with_balls);
-
-$drink = new App\Drink();
-$drink->setName('mano neimas');
-$drink->setAmount(2);
-$drink->setAbarot(39.5);
-$drink->setImage('/img');
-$drink->setData([
-    'name' => 'Moscovskaja',
-    'amount_ml' => 3,
-    'abarot' => 40,
-    'askdf' => 'sdf',
-    'image' => 'IMGLINK'
-]);
-
-$model = new App\Drinks\Model();
-// $model->App\Drinks\Model([
-//     'id' => 1,
-//     'name' => 'Drink',
-//     'abrot' => 60,
+// $drink = new App\Drinks\Drink([
+//     'name' => 'Vodka',
+//     'abarot' => 60,
 //     'amount_ml' => 700,
-//     'inmage' => 'here',
+//     'image' => '.jpg'
 // ]);
+// var_dump($drink);
 
-// var_dump('Drink:', $drink);
+// $filedb = new Core\FileDB(DB_FILE);
 
-var_dump($model);
+// $filedb->load();
+
+// $filedb->createTable('drink');
+
+// $filedb->insertRow('drink', $drink->getData()); 
+
+// $filebd->getRowsWhere('drink', ['abarot' => 45]);
+
+$modelDrinks = new App\Drinks\Model();
+
+$drinks = $modelDrinks->get(['abarot' => 60]);
+
+foreach($drinks as $drink){
+    var_dump($drink);
+    // $drink->setImage('/...');
+    $modelDrinks->update($drink);
+};
+
+
 
 ?>
 <html>

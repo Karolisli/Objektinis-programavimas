@@ -1,1 +1,1 @@
-{"drinks":[],"drink":[]}
+{"drinks":[{"name":"Vodka","amount_ml":700,"abarot":60,"image":".jpg"},{"name":"Samane","amount_ml":700,"abarot":60,"image":".jpg"},{"name":"Sidras","amount_ml":700,"abarot":4,"image":".jpg"}]}

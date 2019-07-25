@@ -19,17 +19,19 @@ class Model{
     }
 
     public function get($conditions = []){
-        $array = [];
+        $drinks = [];
         $rows = $this->db->getRowsWhere($this->table_name, $conditions);
-        foreach($rows as $row){
-            $drinks[] = new Drink($row);
+        foreach($rows as $row_id => $row_data){
+            //$row_data['id'] = $row_id;
+            $drinks[] = new Drink($row_data);
         }
         return $drinks;
     }
 
     public function update(Drink $drink){
-        // $this->db->setData();
-        $this->db->updateRow($this->table_name, $drink->getData());
+        $drink->getId($this->table_name, $drink->getData());
+
+        // $this->db->updateRow($this->table_name, $drink->getData());
     }
 
     // public function delete(Drink $drink){
