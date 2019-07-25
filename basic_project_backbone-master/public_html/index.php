@@ -8,13 +8,19 @@ $nav = [
     ]
 ];
 
-// $drink = new App\Drinks\Drink([
-//     'name' => 'Vodka',
-//     'abarot' => 60,
-//     'amount_ml' => 700,
-//     'image' => '.jpg'
-// ]);
-// var_dump($drink);
+$modelDrinks = new App\Drinks\Model();
+
+
+$drinks = new App\Drinks\Drink([
+        'name' => '',
+        'abarot' => 0,
+        'amount_ml' => 0,
+        'image' => 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.mailleworks.com%2Fimages%2Fdrawing%2Ffull_jap4_transparent.gif&f=1'
+    ]);
+    
+var_dump($drinks);
+
+$modelDrinks->insert($drinks);
 
 // $filedb = new Core\FileDB(DB_FILE);
 
@@ -26,17 +32,100 @@ $nav = [
 
 // $filebd->getRowsWhere('drink', ['abarot' => 45]);
 
-$modelDrinks = new App\Drinks\Model();
+// var_dump($modelDrinks->get());
 
-$drinks = $modelDrinks->get(['abarot' => 60]);
+$drinks = $modelDrinks->get();
 
 foreach($drinks as $drink){
-    var_dump($drink);
+    // var_dump($drink);
     // $drink->setImage('/...');
     $modelDrinks->update($drink);
 };
 
+$form = [
+    'attr' => [
+        'method' => 'POST'
+    ],
+    'fields' => [
+        'name' => [
+            'label' => 'Gib Drink',
+            'type' => 'text',
+            'extra' => [
+                'validators' => [
+                    'validate_not_empty',
+                ]
+            ]
+        ],
+        'amount_ml' => [
+            'label' => 'Amount',
+            'type' => 'number',
+            'extra' => [
+                'validators' => [
+                    'validate_not_empty'
+                ]
+            ]
+        ],
+        'abarot' => [
+            'label' => 'Drink Strenght',
+            'type' => 'number',
+            'extra' => [
+                'validators' => [
+                    'validate_not_empty'
+                ]
+            ]
+        ],
+        'image' => [
+            'label' => 'Image',
+            'type' => 'text',
+            'extra' => [
+                'validators' => [
+                    'validate_not_empty'
+                ]
+            ]
+        ],
+    ],
+    'buttons' => [
+        'submit' => [
+            'title' => 'Submit',
+            'extra' => [
+                'attr' => [
+                    'class' => 'blue-btn'
+                ]
+            ]
+        ],
+        'delete' => [
+            'title' => 'Delete',
+            'extra' => [
+                'attr' => [
+                    'class' => 'blue-btn'
+                ]
+            ]
+        ]
+    ],
+    'callbacks' => [
+        'success' => 'form_success',
+        'fail' => 'form_fail'
+    ],
+];
+$filtered_input = get_form_input($form);
 
+function form_success($filtered_input, &$form, $modelDrinks) {
+    $modelDrinks->insert(new App\Drinks\Drink($filtered_input));
+}
+
+function form_fail() {
+    print 'fail';
+}
+
+switch (get_form_action()) {
+    case 'submit':
+        validate_form($filtered_input, $form, $modelDrinks);
+        break;
+    case 'delete':
+        foreach ($modelDrinks->get() as $drink) {
+            $modelDrinks->delete($drink);
+        }
+}
 
 ?>
 <html>
@@ -52,9 +141,14 @@ foreach($drinks as $drink){
     </head>
     <body>
         <?php require ROOT . '/app/templates/navigation.tpl.php'; ?>
-        
         <div class="content">
             <?php require ROOT . '/core/templates/form/form.tpl.php'; ?>
         </div>
+        <?php foreach($drinks as $drink): ?>
+            <h4><?php print $drink->getName(); ?></h4>
+            <p><?php print $drink->getAbarot() . '%'; ?></p>
+            <p><?php print $drink->getAmount() . 'ml'; ?></p>
+            <img src="<?php print $drink->getImage(); ?>">
+        <?php endforeach; ?>
     </body>
 </html>

@@ -176,6 +176,10 @@ body {
 	border-bottom: 1px solid white;
 }
 
-div.active a {
+/* div.active a {
 	/*color: black;*/
+} */
+
+img{
+    width: 100px;
 }

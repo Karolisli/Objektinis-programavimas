@@ -4,7 +4,7 @@ namespace App\Drinks;
 
 class Drink {
 
-    private $data = [];
+    public $data = [];
 
     public function __construct($data = null) {
         if ($data) {
@@ -31,7 +31,7 @@ class Drink {
             $this->data['id'] = null;
         }
 
-        
+
 
         $this->setName($array['name'] ?? null);
         $this->setAmount($array['amount_ml'] ?? null);
