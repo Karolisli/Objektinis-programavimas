@@ -8,7 +8,9 @@ $nav = [
     ]
 ];
 
-$db = new FileDB(DB_FILE);
+
+// use App;
+$db = new Core\FileDB(DB_FILE);
 $db->createTable('test_table');
 $db->insertRow('test_table', ['name' => 'Zebenkstis', 'balls' => true]);
 $db->insertRow('test_table', ['name' => 'Cytis Ritinas', 'balls' => false]);
@@ -16,12 +18,12 @@ $db->updateRow('test_table', 1, ['name' => 'Rytis Citins', 'balls' => false]);
 
 $db->rowInsertIfNotExists('test_table', 4, ['name' => 'Bubilius Kybys', 'balls' => true]);
 
-var_dump('All database data:', $db->getData());
+// var_dump('All database data:', $db->getData());
 
 $rows_with_balls = $db->getRowsWhere('test_table', ['balls' => true]);
-var_dump('Rows with balls:', $rows_with_balls);
+// var_dump('Rows with balls:', $rows_with_balls);
 
-$drink = new Drink;
+$drink = new App\Drink();
 $drink->setName('mano neimas');
 $drink->setAmount(2);
 $drink->setAbarot(39.5);
@@ -34,7 +36,18 @@ $drink->setData([
     'image' => 'IMGLINK'
 ]);
 
-var_dump('Drink:', $drink);
+$model = new App\Drinks\Model();
+// $model->App\Drinks\Model([
+//     'id' => 1,
+//     'name' => 'Drink',
+//     'abrot' => 60,
+//     'amount_ml' => 700,
+//     'inmage' => 'here',
+// ]);
+
+// var_dump('Drink:', $drink);
+
+var_dump($model);
 
 ?>
 <html>

@@ -27,11 +27,19 @@ class Model{
         return $drinks;
     }
 
+    public function update(Drink $drink){
+        // $this->db->setData();
+        $this->db->updateRow($this->table_name, $drink->getData());
+    }
+
+    // public function delete(Drink $drink){
+    //         $this->db->deleteRow($this->table_name, $drink->getData());
+    // }
+
     public function __destruct(){
         $this->db->save();
     }
+  
 }
-
-var_dump();
 
 ?>

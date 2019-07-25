@@ -14,7 +14,7 @@ require ROOT . '/core/functions/form/core.php';
 require ROOT . '/core/functions/html/builder.php';
 
 // Load App Classes
-require ROOT . '/app/classes/Drink.php';
+require ROOT . '/app/classes/Drinks/Drink.php';
 
 // Load App Functions
 //...
