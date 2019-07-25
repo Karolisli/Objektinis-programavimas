@@ -8,14 +8,17 @@ require '../functions/form/core.php';
 class Drink {
     private $data;
     
-    public function __construct($data) {
-        $this->data = [
-        'name' => null,
-        'amount_ml' => null,
-        'abarot' => null,
-        'image' => null
-        ];
-
+    public function __construct($data = null) {
+        if($data != null){
+            $this->setData($data);
+        }else{
+            $this->data = [
+                'name' => null,
+                'amount_ml' => null,
+                'abarot' => null,
+                'image' => null
+            ];
+        }
     }
 
     public function getData(){
@@ -25,6 +28,13 @@ class Drink {
             'abarot' => $this->getAbarot(),
             'image' => $this->getImage(),
         ];
+    }
+
+    public function setData($data){
+        $this->setName($data['name'] ?? null);
+        $this->setAmount($data['amount_ml'] ?? null);
+        $this->setAbarot($data['abarot'] ?? null);
+        $this->setImage($data['image'] ?? null);
     }
 
     public function setName($name){
