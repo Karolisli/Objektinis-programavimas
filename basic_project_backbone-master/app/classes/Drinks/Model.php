@@ -8,7 +8,6 @@ class Model{
     private $drink;
 
     public function __construct($fileDB){
-        // $this->db = new \Core\FileDB(DB_FILE);   
         $this->db = $fileDB;
         $this->db->load();
         $this->db->createTable($this->table_name); 

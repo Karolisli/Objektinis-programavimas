@@ -10,6 +10,9 @@ $nav = [
 
 // $modelDrinks = new App\Drinks\Model();
 
+$thing = \App\App::$db->getData();
+var_dump($thing);
+
 $db = new \Core\FileDB(DB_FILE);
 
 $modelDrinks = new App\Drinks\Model($db);
