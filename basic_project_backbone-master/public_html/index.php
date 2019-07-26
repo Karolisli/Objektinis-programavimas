@@ -8,45 +8,14 @@ $nav = [
     ]
 ];
 
-// $modelDrinks = new App\Drinks\Model();
+$modelDrinks = new App\Drinks\Model();
 
 $thing = \App\App::$db->getData();
 var_dump($thing);
 
 $db = new \Core\FileDB(DB_FILE);
 
-$modelDrinks = new App\Drinks\Model($db);
-
-// $drinks = new App\Drinks\Drink([
-//         'name' => '',
-//         'abarot' => 0,
-//         'amount_ml' => 0,
-//         'image' => 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.mailleworks.com%2Fimages%2Fdrawing%2Ffull_jap4_transparent.gif&f=1'
-//     ]);
-    
-// // var_dump($drinks);
-
-// $modelDrinks->insert($drinks);
-
-// $filedb = new Core\FileDB(DB_FILE);
-
-// $filedb->load();
-
-// $filedb->createTable('drink');
-
-// $filedb->insertRow('drink', $drink->getData()); 
-
-// $filebd->getRowsWhere('drink', ['abarot' => 45]);
-
-// var_dump($modelDrinks->get());
-
 $drinks = $modelDrinks->get();
-
-// foreach($drinks as $drink){
-//     // var_dump($drink);
-//     // $drink->setImage('/...');
-//     $modelDrinks->update($drink);
-// };
 
 $form = [
     'attr' => [
