@@ -176,10 +176,13 @@ body {
 	border-bottom: 1px solid white;
 }
 
-/* div.active a {
-	/*color: black;*/
-} */
-
 img{
     width: 100px;
+}
+
+.box{
+    border: 1px solid black;
+    width: 170px;
+    padding:20px;
+    
 }
