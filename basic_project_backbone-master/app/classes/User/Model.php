@@ -7,7 +7,6 @@ use \App\App;
 class Model {
 
     private $name = 'user';
-    private $user;
 
     public function __construct() {
         App::$db->createTable($this->name);
